@@ -27,6 +27,32 @@ const initialState: Array<Panel | Label | Button> = [
       caption: 'test button',
     },
   },
+  {
+    type: 'panel',
+    props: {
+      width: 300,
+      height: 200,
+      visible: true,
+    },
+    content: [
+      {
+        type: 'label',
+        props: {
+          caption: 'test2',
+          visible: true,
+        },
+      },
+      {
+        type: 'button',
+        props: {
+          width: 150,
+          height: 50,
+          visible: true,
+          caption: 'test2 button',
+        },
+      },
+    ],
+  },
 ];
 
 export const contentSlice = createSlice({
