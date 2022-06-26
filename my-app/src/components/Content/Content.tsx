@@ -9,6 +9,7 @@ import { Button, Label, Panel } from '../../store/interfaces';
 // } from '../../store/contentSlice';
 import './Content.scss';
 import PanelElement from '../Panel/Panel';
+import LabelElement from '../Label/Label';
 
 export function Content(item: Panel | Label | Button) {
   let element = <div></div>;
@@ -22,6 +23,11 @@ export function Content(item: Panel | Label | Button) {
     case 'panel': {
       const content: Array<Panel | Label | Button> = item.content ? item.content : [];
       element = <PanelElement options={item.props} content={content} />;
+      break;
+    }
+    case 'label': {
+      element = <LabelElement {...item.props} />;
+      break;
     }
   }
 

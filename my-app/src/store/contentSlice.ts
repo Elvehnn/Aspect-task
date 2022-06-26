@@ -11,13 +11,13 @@ const initialState: Array<Panel | Label | Button> = [
       visible: true,
     },
   },
-  // {
-  //   type: 'label',
-  //   props: {
-  //     caption: 'test',
-  //     visible: false,
-  //   },
-  // },
+  {
+    type: 'label',
+    props: {
+      caption: 'test',
+      visible: false,
+    },
+  },
   // {
   //   type: 'button',
   //   props: {

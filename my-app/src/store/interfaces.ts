@@ -10,12 +10,14 @@ export interface Panel {
   content?: Array<Panel | Label | Button>;
 }
 
+export interface LabelProps {
+  caption: string;
+  visible: boolean;
+}
+
 export interface Label {
   type: 'label';
-  props: {
-    caption: 'test';
-    visible: false;
-  };
+  props: LabelProps;
 }
 
 export interface ButtonProps {
