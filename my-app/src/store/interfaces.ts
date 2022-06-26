@@ -31,3 +31,8 @@ export interface Button {
   type: 'button';
   props: ButtonProps;
 }
+
+export interface ChangeStatePayload {
+  path: string[];
+  newValue: number | string | boolean;
+}

@@ -2,6 +2,7 @@ import './App.scss';
 import contentMap from './utils/contentMap';
 import { useAppSelector } from './store/hooks';
 import { RootState } from './store/store';
+import Form from './components/Form/Form';
 
 function App() {
   const content = useAppSelector((state: RootState) => state);
@@ -9,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Form /> */}
+      <Form />
       <div className="content">{contentArray}</div>
     </div>
   );
