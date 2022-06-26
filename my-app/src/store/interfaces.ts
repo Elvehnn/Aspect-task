@@ -24,6 +24,7 @@ export interface ButtonProps {
   width: number;
   height: number;
   visible: boolean;
+  caption: string;
 }
 
 export interface Button {

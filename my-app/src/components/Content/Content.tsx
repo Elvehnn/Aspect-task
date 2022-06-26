@@ -10,6 +10,7 @@ import { Button, Label, Panel } from '../../store/interfaces';
 import './Content.scss';
 import PanelElement from '../Panel/Panel';
 import LabelElement from '../Label/Label';
+import ButtonElement from '../Button/Button';
 
 export function Content(item: Panel | Label | Button) {
   let element = <div></div>;
@@ -27,6 +28,10 @@ export function Content(item: Panel | Label | Button) {
     }
     case 'label': {
       element = <LabelElement {...item.props} />;
+      break;
+    }
+    case 'button': {
+      element = <ButtonElement {...item.props} />;
       break;
     }
   }

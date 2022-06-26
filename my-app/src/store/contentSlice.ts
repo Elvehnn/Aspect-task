@@ -18,14 +18,15 @@ const initialState: Array<Panel | Label | Button> = [
       visible: false,
     },
   },
-  // {
-  //   type: 'button',
-  //   props: {
-  //     width: 100,
-  //     height: 50,
-  //     visible: true,
-  //   },
-  // },
+  {
+    type: 'button',
+    props: {
+      width: 100,
+      height: 50,
+      visible: true,
+      caption: 'test button',
+    },
+  },
 ];
 
 export const contentSlice = createSlice({
