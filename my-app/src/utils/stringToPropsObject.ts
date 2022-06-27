@@ -1,4 +1,4 @@
-export const stringToObject = (string: string) => {
+export const stringToPropsObject = (string: string) => {
   const propsArray = string
     .slice(1, -1)
     .split(/[,:\s]/g)
