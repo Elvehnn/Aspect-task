@@ -1,8 +1,6 @@
 import { useForm } from 'react-hook-form';
 import './Form.scss';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { Button, Label, Panel } from '../../store/interfaces';
-import { RootState } from '../../store/store';
+import { useAppDispatch } from '../../store/hooks';
 
 type FormInputs = {
   path: string;
@@ -11,7 +9,6 @@ type FormInputs = {
 
 const Form = () => {
   const dispatch = useAppDispatch();
-  const content = useAppSelector((state: RootState) => state);
 
   const {
     register,
