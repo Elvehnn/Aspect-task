@@ -1,80 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { Button, ChangeStatePayload, Label, Panel } from './interfaces';
-
-const initialState: Array<Panel | Label | Button> = [
-  {
-    type: 'panel',
-    props: {
-      width: 500,
-      height: 200,
-      visible: true,
-    },
-  },
-  {
-    type: 'label',
-    props: {
-      caption: 'test',
-      visible: false,
-    },
-  },
-  {
-    type: 'button',
-    props: {
-      width: 100,
-      height: 50,
-      visible: true,
-      caption: 'test button',
-    },
-  },
-  {
-    type: 'panel',
-    props: {
-      width: 300,
-      height: 200,
-      visible: true,
-    },
-    content: [
-      {
-        type: 'label',
-        props: {
-          caption: 'test2',
-          visible: true,
-        },
-      },
-      {
-        type: 'button',
-        props: {
-          width: 150,
-          height: 50,
-          visible: true,
-          caption: 'test2 button',
-        },
-      },
-    ],
-  },
-];
+import { Action, Button, Label, Panel } from './interfaces';
+import { INITIAL_STATE } from './constants';
 
 export const contentSlice = createSlice({
   name: 'content',
-  initialState,
+  initialState: INITIAL_STATE,
 
   reducers: {
-    changeContent: (state, action: PayloadAction<ChangeStatePayload>) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      // state = [...state, action.payload.path: action.newValue];
+    change: (state: Array<Panel | Label | Button>, action: Action) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore element implicitly has an 'any' type
+      // const destination = action.payload.path.slice(1, -1).reduce((acc, item) => acc[item], state);
+      console.log([...state], action);
+
+      // state = [...state, destination[pathArray.slice(-1)]: action.payload.newValue];
     },
   },
 });
 
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-// export const selectCount = (state: RootState) => state.counter.value;
+export const { change } = contentSlice.actions;
 
 export default contentSlice.reducer;

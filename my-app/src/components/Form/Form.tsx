@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import './Form.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Button, Label, Panel } from '../../store/interfaces';
+import { RootState } from '../../store/store';
 
 type FormInputs = {
   path: string;
@@ -10,29 +11,24 @@ type FormInputs = {
 
 const Form = () => {
   const dispatch = useAppDispatch();
-  const content = useAppSelector((state) => state);
+  const content = useAppSelector((state: RootState) => state);
 
   const {
     register,
     handleSubmit,
     // formState: { errors },
   } = useForm<FormInputs>();
+
   const onSubmit = (data: FormInputs) => {
     const pathArray = data.path.split(/[.[\]]/g).filter((item) => item);
 
-    const newContent = [...content];
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore element implicitly has an 'any' type
-    const destination = pathArray.slice(1, -1).reduce((acc, index) => acc[index], newContent);
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore element implicitly has an 'any' type
-    // destination[pathArray.slice(-1)] = 'new test';
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore element implicitly has an 'any' type
-    console.log(destination[pathArray.slice(-1)]);
-    // console.log(content[`3[content]`]);
-    // console.log(content[`3`][`content`]);
+    dispatch({
+      type: 'content/change',
+      payload: {
+        path: pathArray,
+        newValue: data.newValue,
+      },
+    });
   };
 
   return (

@@ -32,7 +32,12 @@ export interface Button {
   props: ButtonProps;
 }
 
-export interface ChangeStatePayload {
+export interface ActionPayload {
   path: string[];
   newValue: number | string | boolean;
+}
+
+export interface Action {
+  type: string;
+  payload: ActionPayload;
 }
