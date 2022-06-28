@@ -43,7 +43,7 @@ const Form = () => {
         valueErrorMessage = 'Value must be a number';
       }
 
-      if (typeof destination === 'string' && typeOfValue !== 'string' && typeOfValue !== 'number') {
+      if (typeof destination === 'string' && typeOfValue === 'object') {
         valueErrorMessage = `Value must be a string`;
       }
 

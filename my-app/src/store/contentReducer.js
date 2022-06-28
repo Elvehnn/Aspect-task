@@ -13,7 +13,7 @@ export default function contentReducer(state = INITIAL_STATE, action) {
       const index = payload.path.slice(-1).toString();
       const destination = getDestination(payload.path, state);
 
-      if (payload.typeOfValue === 'boolean') {
+      if (typeof destination === 'boolean' && payload.typeOfValue === 'boolean') {
         object[index] = payload.newValue === 'true' ? true : false;
 
         return newState;
@@ -25,10 +25,7 @@ export default function contentReducer(state = INITIAL_STATE, action) {
         return newState;
       }
 
-      if (
-        (typeof destination === 'string' && payload.typeOfValue === 'string') ||
-        payload.typeOfValue === 'number'
-      ) {
+      if (typeof destination === 'string' && payload.typeOfValue !== 'object') {
         object[index] = payload.newValue;
 
         return newState;
