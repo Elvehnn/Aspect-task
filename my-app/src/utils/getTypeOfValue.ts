@@ -8,6 +8,7 @@ export const getTypeOfValue = (newValue: string) => {
   if (NUMBER_REGEXP.test(newValue)) {
     return 'number';
   }
+
   if (ANY_OBJECT_REGEXP.test(newValue)) {
     return 'object';
   }

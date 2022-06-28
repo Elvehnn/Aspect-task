@@ -54,7 +54,7 @@ export const INITIAL_STATE: Array<Panel | Label | Button> = [
 ];
 
 export const ANY_OBJECT_REGEXP = /^\{.*\}$/;
-export const NUMBER_REGEXP = /\d+/g;
+export const NUMBER_REGEXP = /^\d+$/;
 
 export const CONTENT_REGEXP =
   /\{type: '(?<type>label|button|panel)', props: (?<props>\{.+?\})(?:, content: \[(?<content>\{.+\})*?\])?\}?/gi;

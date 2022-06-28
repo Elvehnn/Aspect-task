@@ -8,5 +8,9 @@ export const validatePath = (pathArray: string[], content: RootState) => {
     return ``;
   }
 
+  if (destination === null) {
+    return `Content doesn't exist`;
+  }
+
   return destination ? '' : `Path doesn't exist`;
 };

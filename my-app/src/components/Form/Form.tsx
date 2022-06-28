@@ -73,7 +73,7 @@ const Form = () => {
       return;
     }
 
-    if (ANY_OBJECT_REGEXP.test(data.newValue)) {
+    if (ANY_OBJECT_REGEXP.test(data.newValue) && validatePathMessage !== `Content doesn't exist`) {
       dispatch({
         type: 'content/add',
         payload: {
