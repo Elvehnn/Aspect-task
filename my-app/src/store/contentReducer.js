@@ -1,6 +1,7 @@
 import { INITIAL_STATE } from './constants';
 import { deepClone } from '../utils/deepClone';
 import { getObjectFromString } from '../utils/getObjectFromString';
+import { getDestination } from '../utils/getDestination';
 
 export default function contentReducer(state = INITIAL_STATE, action) {
   const { payload } = action;
@@ -8,37 +9,39 @@ export default function contentReducer(state = INITIAL_STATE, action) {
 
   switch (action.type) {
     case 'content/change': {
-      const destination = payload.path.slice(1).reduce((acc, item) => acc[item], newState);
       let object = payload.path.slice(1, -1).reduce((acc, item) => acc[item], newState);
       const index = payload.path.slice(-1).toString();
+      const destination = getDestination(payload.path, state);
 
-      if (
-        destination &&
-        typeof destination === 'boolean' &&
-        payload.newValue === ('false' || 'true')
-      ) {
+      if (payload.typeOfValue === 'boolean') {
         object[index] = payload.newValue === 'true' ? true : false;
 
         return newState;
       }
 
-      if (destination && typeof destination === 'string') {
+      if (typeof destination === 'number' && payload.typeOfValue === 'number') {
+        object[index] = parseFloat(payload.newValue);
+
+        return newState;
+      }
+
+      if (
+        (typeof destination === 'string' && payload.typeOfValue === 'string') ||
+        payload.typeOfValue === 'number'
+      ) {
         object[index] = payload.newValue;
 
         return newState;
       }
 
-      if (destination && typeof destination === 'object' && /^\{.*\}$/.test(payload.newValue)) {
-        object[index] = getObjectFromString(payload.newValue);
+      object[index] = getObjectFromString(payload.newValue);
 
-        return newState;
-      }
+      return newState;
+    }
 
-      if (!destination && /^\{.*\}$/.test(payload.newValue)) {
-        object.push(getObjectFromString(payload.newValue));
-
-        return newState;
-      }
+    case 'content/add': {
+      const object = payload.path.slice(1, -1).reduce((acc, item) => acc[item], newState);
+      object.push(getObjectFromString(payload.newValue));
 
       return newState;
     }

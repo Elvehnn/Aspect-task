@@ -35,6 +35,7 @@ export interface Button {
 export interface ActionPayload {
   path: string[];
   newValue: number | string | boolean;
+  typeOfValue: string;
 }
 
 export interface Action {

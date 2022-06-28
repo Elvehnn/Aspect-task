@@ -24,6 +24,7 @@ export const stringToPropsObject = (string: string) => {
         break;
       }
     }
+
     propsObject = { ...propsObject, [propsArray[i]]: value };
   }
 
