@@ -1,6 +1,74 @@
-# Getting Started with Create React App
+## Задача
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+Используя React + Redux создайте компонент, в котором будут два поля для ввода, кнопка и область для отображения контента:
+![1](https://user-images.githubusercontent.com/70837634/176163539-d1241836-587e-434d-a4c3-b5364fc6b1fe.png)
+
+Область «контент» задается объектом content, который может включать в себя несколько типов элементов:
+
+1. panel со свойствами: width, height, visible
+2. label со свойствами: caption, visible
+3. button со свойствами: caption, width, height, visible
+
+width, height – число
+caption – текст
+visible – true/false
+
+пример:
+content = [
+	{
+		type: 'panel',
+		props: {
+			width: 500,
+			height: 200,
+			visible: true
+		},
+	},
+	{
+		type: 'label',
+		props: {
+			caption: 'test',
+			visible: false
+		},
+	},
+	{
+		type: 'button',
+		props: {
+			width: 100,
+			height: 50,
+			visible: true
+		},
+	}
+]
+
+Элемент 'panel' может включать в себя любые другие элементы в том числе другие 'panel'. Например:
+content = [{
+	type: 'panel',
+	props: {
+		width: 500,
+		height: 200,
+		visible: true
+	},
+	content: [{
+		type: 'label',
+		props: {
+			caption: 'test',
+			visible: false
+		}
+	}]
+}]
+
+### Что надо сделать:
+1. Задать начальный content, который будет включать в себя весь перечень элементов (включая вложенные) и отобразить его на экране.
+(panel - div с рамкой, label - span c текстом, button - button с надписью ) соответственно с учетом размеров и видимости
+
+2. в поле «Путь» вводим строку, в которой задаем путь внутри content. Например: 'content[2].props.caption'
+в поле «Новое значение» указываем новое значение данного свойства. Например: 'test2'/ 
+По клику на кнопке «применить» объект должен измениться и на экране должен отобразиться новое содержимое content. 
+В поле «Новое значение» можно внести в том числе и такое значение: {type: 'label', props: {caption: 'test', visible: false}}. В этом случае, если путь существует, то объект заменится, иначе - добавится в конец массива content.
+На примере, описанном выше:
+Если путь: content[0].content[0], то объект заменится на новый.
+Если путь: content[0].content[1], то объект добавится.
+
 
 ## Available Scripts
 
@@ -10,37 +78,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
